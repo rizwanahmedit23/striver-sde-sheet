@@ -1,0 +1,57 @@
+/************************************************************
+
+    Following is the BinaryTreeNode class structure
+
+    template <typename T>
+    class BinaryTreeNode {
+       public:
+        T val;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T val) {
+            this->val = val;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+void printLevelWise(BinaryTreeNode<int> *root, vector<int>& ans) {
+    // Write your code here
+    //Edge Case
+    if(root == NULL)    return;
+    //Code Logic
+
+    // Create a queue type - BinaryTreeNode<int>* 
+    queue<BinaryTreeNode<int> *> pendingNodes;
+
+    //Insert root in the queue
+    pendingNodes.push(root);
+    //while loop executes if !queue.empty()
+    while(!pendingNodes.empty()){
+        // perform the below steps for queue's times
+        int size = pendingNodes.size();
+        for(int i=0;i<size;i++){
+            // store top of queue in a varible and pop element from queue
+            BinaryTreeNode<int> *node = pendingNodes.front();
+            pendingNodes.pop();
+            // print that node's data
+//             cout<< node->data<< " ";
+            ans.push_back(node->val);
+            // insert node's childrens in the queue
+            if(node->left != NULL)    pendingNodes.push(node->left);
+            if(node->right != NULL)    pendingNodes.push(node->right);
+        }
+//         cout << endl;
+    }
+    return;
+    
+}
+vector<int> getLevelOrder(BinaryTreeNode<int> *root)
+{
+    //  Write your code here.
+    vector<int> ans;
+    printLevelWise(root, ans);
+    return ans;
+}
