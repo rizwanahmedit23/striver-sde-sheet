@@ -1,0 +1,57 @@
+/************************************************************
+
+    Following is the Binary Tree node structure:
+
+    class BinaryTreeNode
+    {
+    public :
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+
+************************************************************/
+void getPreOrderTraversal(BinaryTreeNode<int> *root, vector<int>&ans){
+    if(root== NULL)    return;
+    ans.push_back(root->data);
+    getPreOrderTraversal(root-> left, ans);
+    getPreOrderTraversal(root-> right, ans);
+    return;
+}
+void getPostOrderTraversal(BinaryTreeNode<int> *root, vector<int>&ans){
+    if(root== NULL)    return;
+    
+    getPostOrderTraversal(root-> left, ans);
+    getPostOrderTraversal(root-> right, ans);
+    ans.push_back(root->data);
+    return;
+}
+void getInOrderTraversal(BinaryTreeNode<int> *root, vector<int>&ans){
+    if(root== NULL)    return;
+    
+    getInOrderTraversal(root-> left, ans);
+    ans.push_back(root->data);
+    getInOrderTraversal(root-> right, ans);
+    return;
+}
+vector<vector<int>> getTreeTraversal(BinaryTreeNode<int> *root){
+    // Write your code here.
+    vector<vector<int>> ans;
+    vector<int> a, b, c;
+    getInOrderTraversal(root, a);
+    getPreOrderTraversal(root, b);
+    getPostOrderTraversal(root, c);
+    
+    
+    ans.push_back(a);
+    ans.push_back(b);
+    ans.push_back(c);
+    return ans;
+}
