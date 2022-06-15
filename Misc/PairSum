@@ -1,0 +1,37 @@
+#include <bits/stdc++.h> 
+vector<vector<int>> pairSum(vector<int> &arr, int num){
+   // Write your code here.
+//     int ans = 0;
+    int n = arr.size();
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> ans;
+    int i = 0,j=n-1;
+    while(i<j){
+        if(arr[i]+arr[j]<num)
+            i++;
+        else if(arr[i]+arr[j]>num)
+            j--;
+        else{
+            if(arr[i]==arr[j]){
+                int count = j-i+1;
+                vector<int> p;p.push_back(arr[i]);p.push_back(arr[j]);
+                for(int k=0;k<(count*(count-1))/2;k++)    ans.push_back(p);
+//                 ans = ans + (count*(count-1))/2;
+                return ans;
+            }
+            int c1=0,c2=0;
+            for(int k=i;arr[k]==arr[i];k++){
+                c1++;
+            }
+            for(int k=j;arr[k]==arr[j];k--){
+                c2++;
+            }
+            vector<int> p;
+            p.push_back(arr[i]);p.push_back(arr[j]);
+            for(int k=0;k<c1*c2;k++)ans.push_back(p);  
+//             ans = ans + c1*c2;
+            i=i+c1; j=j-c2;
+        }
+    }
+    return ans; 
+}
