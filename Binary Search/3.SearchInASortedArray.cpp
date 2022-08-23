@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // if mid is unique return it.
+    // The mid element if is not unique, then if it's right most apperance index is even indicates that the unique element is present in left side and vice versa.
     int singleNonDuplicate(vector<int>& nums) {
         int low = 0, high = nums.size()-1;
         while(low!=high){
