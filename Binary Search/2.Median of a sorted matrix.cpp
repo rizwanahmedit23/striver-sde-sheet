@@ -1,7 +1,12 @@
 #include<climits>
 int getMedian(vector<vector<int>> &matrix)
 {
-    // Write your code here.
+    // find smallest, largest and number of elements.
+    // The mid1BasedIdx(N+1)/2 th element the median(N is given to be odd). 
+    // Search in range smallest to largest and find mid.
+    // count occurence of elements <= mid, and also check if mid is present.
+    // if mid is present and count==mid1BasedIdx return mid
+    // Handle other cases.
     int n = matrix.size();
     
     int N=0;
